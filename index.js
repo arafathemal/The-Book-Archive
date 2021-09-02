@@ -3,6 +3,9 @@ const getSearchValue = () => {
     const searchField = document.getElementById('search-field');
     const searchText = searchField.value;
     searchField.value = "";
+    if(searchText === ""){
+        document.getElementById("no-result").innerText ="please write a book name!!"
+    }
     const url = `https://openlibrary.org/search.json?q=${searchText}`;
     fetch(url)
     .then(res =>res.json())
@@ -23,7 +26,7 @@ const getBookData = details =>{
         <div class="card-body">
           <h5 class="card-title"><span class="text-primary">Book Name</span>: ${detail.subject ? detail.subject: "name not found"}</h5>
           <h5><span class="text-primary">Author Name</span>:${detail.author_name ? detail.author_name:"author name missing"}</h5>
-          <h5><span class="text-primary">Publisher</span>:${detail.publisher ? detail.publisher:"not found"}</h5>
+          <h5><span class="text-primary">Publisher</span>:${detail.publisher ? detail.publisher:"null"}</h5>
           
         </div>
         <div class="card-footer">
